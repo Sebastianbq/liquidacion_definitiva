@@ -2,7 +2,7 @@
 
 ## Elaborado por: 
 
-Marcelo
+Marcello Maccanti
 Sebastian Buitrago Quintero
 
 
@@ -13,8 +13,9 @@ sale de la empresa, por despido, renuncia, finalización de contrado, entre otro
 
 ## ¿Cómo funcionar?
 
-En esta etapa del proyecto el codigo tiene una interfaz por consola, en la que solo se necesita clonar el proyecto para corrrerlo. 
-librerias a tener en cuenta: unittest, sys. 
+En esta etapa del proyecto el codigo tiene una interfaz por consola, en la que solo se necesita clonar el proyecto para corrrerlo con la linea de codigo liquidacio_definitiva/src/console/interfaz.py. 
+
+librerias a tener en cuenta: unittest, sys.
 La libreria unittest nos permite correr las prubas unitarias; y la libreria sys nos permite importar clases de otras carpetas
 
 El codigo lanza una serie de preguntas necesarias para ejecutar las operaciones por consola; el cuales tiene, salario base, dias de vacaciones,
@@ -30,3 +31,16 @@ utilizamos las librerias de unittest, sys.
 -Dentro de las carpeta src encontramos un archivo __init__ y 2 carpetas las cuales son: console el cual contiene los archivos interfaz y __init__, tambien otra carpeta llamada settlement el cual contiene los archivos calculateLogic y __init__. 
 
 Dentro de las carpeta tests encontramos los archivos __init__ y liquidacionTest.
+
+## Entradas
+self.salary_base = salario base
+self.months_worked = meses trabajados
+self.annual_layoffs = despidos anuales
+self.interest_losses = perdida de intereses
+self.bonus_services = prima de servicios
+self.vacation_days = dias de vacaciones
+self.extra_hours = horas extras
+self.night_charges = cargos nocturnos
+self.compensation_dismissal = compensacion de despido
+
+
