@@ -1,5 +1,21 @@
 import unittest
-from src.settlement.calculateLogic import Settlementcalculator, SalarybaseExcepction, Months_workendExcepction
+import sys
+sys.path.append("src")
+import settlement.calculateLogic as calculateLogic
+from settlement.calculateLogic import Settlementcalculator, SalarybaseExcepction, Months_workendExcepction
+
+
+"""
+self.salary_base = salario base
+self.months_worked = meses trabajados
+self.annual_layoffs = despidos anuales
+self.interest_losses = perdida de intereses
+self.bonus_services = prima de servicios
+self.vacation_days = dias de vacaciones
+self.extra_hours = horas extras
+self.night_charges = cargos nocturnos
+self.compensation_dismissal = compensacion de despido
+"""
 
 
 class CalculTest(unittest.TestCase):
@@ -176,7 +192,7 @@ class CalculTest(unittest.TestCase):
 
 
 
-    #Contrato de trabajo a término indefinido sin cesantías
+    # Caso de prueba 9:Contrato de trabajo a término indefinido sin cesantías
     def test_9(self):
         base_salary=6000000
         months_worked=24
@@ -197,7 +213,7 @@ class CalculTest(unittest.TestCase):
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
-
+    # Caso de prueba 10: salario base 0
     def test_10(self):
         base_salary= 0
         months_worked=24
@@ -213,7 +229,7 @@ class CalculTest(unittest.TestCase):
                                             interest_losses, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
         
-
+    # Caso de prueba 11: ningun dia trabajado
     def test_11(self):
         base_salary= 600000
         months_worked=0
@@ -229,7 +245,7 @@ class CalculTest(unittest.TestCase):
                                             interest_losses, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
         
-
+    # Caso de prueba 12:
     def test_12(self):
         base_salary= 600000
         months_worked=0
@@ -245,7 +261,26 @@ class CalculTest(unittest.TestCase):
                                             interest_losses, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
 
+    # Caso de prueba 13: Empleado con salario base y beneficios retenidos durante disputa legal
+    def test_13(self):
+        base_salary = 6000000
+        months_worked = 24
+        annual_layoffs = 8.33
+        interest_losses = 12 
+        bonus_services = 8.33 
+        vacation_days = 15 
+        extra_hours = 8 
+        night_charges = 3 
+        compensation_dismissal = 0
+        expected_liquidation= 7280035.32
+        
+        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
+                                            interest_losses, bonus_services, vacation_days,
+                                            extra_hours, night_charges, compensation_dismissal)
 
+        valor_neto = result.Calculate_net_total(2000000)
+        
+        self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
 #Esto es para realizar las pruebas unitarias
 if __name__ == '__main__':
