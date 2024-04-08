@@ -8,13 +8,13 @@ from settlement.calculateLogic import Settlementcalculator, SalarybaseExcepction
 """
 self.salary_base = salario base
 self.months_worked = meses trabajados
-self.annual_layoffs = despidos anuales
-self.interest_losses = perdida de intereses
+self.annual_layoffs = cesantias anuales
+self.interest_layoffs = intereses de cesantias
 self.bonus_services = prima de servicios
 self.vacation_days = dias de vacaciones
 self.extra_hours = horas extras
 self.night_charges = cargos nocturnos
-self.compensation_dismissal = compensacion de despido
+self.compensation_dismissal = indemnizacion por despido
 """
 
 
@@ -25,7 +25,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 5000000
         months_worked = 6
         annual_layoffs= 8.33
-        interest_losses= 12 
+        interest_layoffs= 12 
         bonus_services= 8.33 
         vacation_days= 10 
         extra_hours= 5 
@@ -33,11 +33,9 @@ class CalculTest(unittest.TestCase):
         compensation_dismissal= 0
         expected_liquidation= 5816883.8297999995
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked)
     
-        valor_neto = result.Calculate_net_total(1000000)
+        valor_neto = result.Calculate_net_total()
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
@@ -47,7 +45,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 6000000
         months_worked = 12
         annual_layoffs= 8.33
-        interest_losses= 12 
+        interest_layoffs= 12 
         bonus_services= 8.33 
         vacation_days= 15 
         extra_hours= 8 
@@ -56,7 +54,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation= 15780017.6596
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
+                                        interest_layoffs, bonus_services, vacation_days,
                                         extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(1000000)
@@ -69,7 +67,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 5500000
         months_worked = 8
         annual_layoffs= 8.33
-        interest_losses= 12 
+        interest_layoffs= 12 
         bonus_services= 8.33 
         vacation_days= 12 
         extra_hours= 10 
@@ -78,7 +76,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation= 7049386.773066668
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
+                                        interest_layoffs, bonus_services, vacation_days,
                                         extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(1000000)
@@ -90,7 +88,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 6000000
         months_worked = 10
         annual_layoffs = 8.33
-        interest_losses = 12 
+        interest_layoffs = 12 
         bonus_services = 8.33 
         vacation_days = 20 
         extra_hours = 15 
@@ -99,7 +97,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation = 9106264.716333333
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
+                                        interest_layoffs, bonus_services, vacation_days,
                                         extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(1500000)
@@ -111,7 +109,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 7000000
         months_worked = 24
         annual_layoffs = 8.33
-        interest_losses = 12 
+        interest_layoffs = 12 
         bonus_services = 8.33 
         vacation_days = 30 
         extra_hours = 12 
@@ -120,7 +118,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation = 22535868.652533337
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
+                                        interest_layoffs, bonus_services, vacation_days,
                                         extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(2000000)
@@ -132,7 +130,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 4500000
         months_worked = 9
         annual_layoffs = 8.33
-        interest_losses = 12 
+        interest_layoffs = 12 
         bonus_services = 8.33 
         vacation_days = 15 
         extra_hours = 0 
@@ -141,7 +139,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation = 5750013.244699999
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
+                                        interest_layoffs, bonus_services, vacation_days,
                                         extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(1000000)
@@ -153,7 +151,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 5000000
         months_worked = 12
         annual_layoffs = 8.33
-        interest_losses = 12 
+        interest_layoffs = 12 
         bonus_services = 8.33 
         vacation_days = 20 
         extra_hours = 0 
@@ -162,7 +160,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation = 16833350.992933333
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
+                                        interest_layoffs, bonus_services, vacation_days,
                                         extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(1500000)
@@ -174,7 +172,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 5500000
         months_worked = 18
         annual_layoffs = 8.33
-        interest_losses = 12 
+        interest_layoffs = 12 
         bonus_services = 8.33 
         vacation_days = 25 
         extra_hours = 10 
@@ -183,7 +181,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation = 17422734.822733335
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_losses, bonus_services, vacation_days,
+                                        interest_layoffs, bonus_services, vacation_days,
                                         extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(2000000)
@@ -197,7 +195,7 @@ class CalculTest(unittest.TestCase):
         base_salary=6000000
         months_worked=24
         annual_layoffs=0
-        interest_losses=12
+        interest_layoffs=12
         bonus_services=8.33
         vacation_days=15
         extra_hours=8
@@ -206,7 +204,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation = 7280016.66
 
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                            interest_losses, bonus_services, vacation_days,
+                                            interest_layoffs, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(2000000)
@@ -218,7 +216,7 @@ class CalculTest(unittest.TestCase):
         base_salary= 0
         months_worked=24
         annual_layoffs=0
-        interest_losses=12
+        interest_layoffs=12
         bonus_services= 0
         vacation_days=15
         extra_hours=8
@@ -226,7 +224,7 @@ class CalculTest(unittest.TestCase):
         compensation_dismissal=0        
 
         self.assertRaises(SalarybaseExcepction, Settlementcalculator, base_salary, months_worked, annual_layoffs,
-                                            interest_losses, bonus_services, vacation_days,
+                                            interest_layoffs, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
         
     # Caso de prueba 11: ningun dia trabajado
@@ -234,7 +232,7 @@ class CalculTest(unittest.TestCase):
         base_salary= 600000
         months_worked=0
         annual_layoffs=0
-        interest_losses=12
+        interest_layoffs=12
         bonus_services= 0
         vacation_days=15
         extra_hours=8
@@ -242,7 +240,7 @@ class CalculTest(unittest.TestCase):
         compensation_dismissal=0        
 
         self.assertRaises(Months_workendExcepction, Settlementcalculator, base_salary, months_worked, annual_layoffs,
-                                            interest_losses, bonus_services, vacation_days,
+                                            interest_layoffs, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
         
     # Caso de prueba 12:
@@ -250,7 +248,7 @@ class CalculTest(unittest.TestCase):
         base_salary= 600000
         months_worked=0
         annual_layoffs=0
-        interest_losses=12
+        interest_layoffs=12
         bonus_services= 0
         vacation_days=15
         extra_hours=8
@@ -258,7 +256,7 @@ class CalculTest(unittest.TestCase):
         compensation_dismissal=0        
 
         self.assertRaises(Months_workendExcepction, Settlementcalculator, base_salary, months_worked, annual_layoffs,
-                                            interest_losses, bonus_services, vacation_days,
+                                            interest_layoffs, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
 
     # Caso de prueba 13: Empleado con salario base y beneficios retenidos durante disputa legal
@@ -266,7 +264,7 @@ class CalculTest(unittest.TestCase):
         base_salary = 6000000
         months_worked = 24
         annual_layoffs = 8.33
-        interest_losses = 12 
+        interest_layoffs = 12 
         bonus_services = 8.33 
         vacation_days = 15 
         extra_hours = 8 
@@ -275,7 +273,7 @@ class CalculTest(unittest.TestCase):
         expected_liquidation= 7280035.32
         
         result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                            interest_losses, bonus_services, vacation_days,
+                                            interest_layoffs, bonus_services, vacation_days,
                                             extra_hours, night_charges, compensation_dismissal)
 
         valor_neto = result.Calculate_net_total(2000000)

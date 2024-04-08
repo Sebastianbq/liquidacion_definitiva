@@ -7,90 +7,97 @@ class Months_workendExcepction(Exception):
     def __init__(self):       
         super().__init__(f"no tiene dias o meses trabajados")
 
+class MisspelledException(Exception):
+    def __init__(self):       
+        super().__init__(f'no diligencio "si" o "no')
+
 
 
 #clase para implementar la logica del programa
 class Settlementcalculator:
-    def __init__(self, salary_base, months_worked, annual_layoffs, interest_losses, bonus_services, vacation_days,
-                  extra_hours, night_charges, compensation_dismissal):
+    def __init__(self, salary_base, months_worked,changeable_variables):
         """
         self.salary_base = salario base
-        self.months_worked = meses trabajados
-        self.annual_layoffs = despidos anuales
-        self.interest_losses = perdida de intereses
-        self.bonus_services = prima de servicios
-        self.vacation_days = dias de vacaciones
-        self.extra_hours = horas extras
-        self.night_charges = cargos nocturnos
-        self.compensation_dismissal = compensacion de despido
-        self.first_extra_hours = Primeras 8 horas extras con recargo del 25%
-        self.value_hours_extra_max = horas extras con recargo del 75%
+        self.months_worked = meses trabajados                                
+        self.vacations_day= dias de vacacion
+        self.hours_extra= horas extras
+        self.hours_extra_nigth= horas extras nocturnas
+        self.compensation_days= dias de compensacion
+        self.total_days_months= Dias del mes, suponiendo 30        
+        self.salary_day= salario de un dia
+        self.hours_work = horas trabajadas
+        self.value_hours_extra_max = valor de las horas extras con recargo del 75%
+        self.value_hours_extra = valar de las horas extras de 25%
+        self.Months_of_years= mese del año
+        self.interest_rate_layoufffs = porcentaje de intereses de cesantias
+        self.taxes_rate= porcentaje de impuestos
         """
+
         self.salary_base = salary_base
         self.months_worked = months_worked
-        self.annual_layoffs = annual_layoffs
-        self.interest_losses = interest_losses
-        self.bonus_services = bonus_services
-        self.vacation_days = vacation_days
-        self.extra_hours = extra_hours
-        self.night_charges = night_charges
-        self.compensation_dismissal = compensation_dismissal
-        self.first_extra_hours = 8  
-        self.value_hours_extra = 1.25
-        self.value_hours_extra_max = 1.75
-        self.hour_work_per_week= 240
+        self.vacations_day= changeable_variables["vacation"]
+        self.hours_extra= changeable_variables["extra_hours"]
+        self.hours_extra_nigth= changeable_variables["extra_hours_nigth"]
+        self.compensation_days= changeable_variables["days_finish"]
+        self.total_days_months= 30        
+        self.salary_day= (self.salary_base / self.total_days_months)
+        self.hours_work = 8  
+        self.value_hours_extra_noc = 1.75
+        self.value_hours_extra = 1.25        
+        self.Months_of_years= 12
+        self.interest_rate_layoufffs = 0.12        
+        self.taxes_rate= 0.2
 
-
+        #llamado a errores
         self.Check_salariobase()
         self.Check_months_worked()
 
-    #metodo que calcula la indemnizacion por despido
-    def calculate_severance_pay(self):
-        Months_of_years= 12
-        if self.annual_layoffs == 0:
+    #metodo que calcula las cesantias por despido
+    def calculate_severance_pay(self):            
+        if self.months_worked < 12:
             return 0
-        return (self.annual_layoffs / Months_of_years) * self.months_worked
+        return self.salary_base * self.months_worked
     
 
-    #metodo que calcula los intereses por indemnizacion por despido
+    #metodo que calcula los intereses de cesantias por despido
     def Calculate_severance_interest(self):
-        return (self.interest_losses / 100) * self.calculate_severance_pay()
+        return  self.calculate_severance_pay() * self.interest_rate_layoufffs
 
     #metodo que calcula prima de servicios
-    def Calculate_bonus_services(self):
-        years = 12
-        return (self.bonus_services / years) * self.months_worked
+    def Calculate_bonus_services(self):        
+        return self.salary_day /self.Months_of_years
 
 
     #metodo que calcula los dias de vacaciones
-    def Calculate_vacation(self):
-        total_days_months= 30
-        return (self.salary_base / total_days_months) * self.vacation_days
+    def Calculate_vacation(self, vacation_days):
+            return self.salary_day * vacation_days
+        
 
     #metodo que calcula horas extras 
-    def Calulate_extra_hours(self):
-        if self.extra_hours <= 8:
-            return self.extra_hours * self.salary_base * self.value_hours_extra / self.hour_work_per_week  # Recargo del 25% para las primeras 8 horas extras
-        else:            
-            additional_overtime = self.extra_hours - self.first_extra_hours  # Horas extras adicionales con recargo del 75%
-            return (self.first_extra_hours * self.salary_base * self.value_hours_extra / self.hour_work_per_week) + (additional_overtime * self.salary_base * self.value_hours_extra_max / self.hour_work_per_week)
+    def Calulate_extra_hours(self,extra,extra_nigth):
+        extra_hours= extra * (self.salary_day/self.hours_work) * self.value_hours_extra    # Recargo del 25% para horas extras diurnas
+        extra_hours_nigth= extra_nigth * (self.salary_day/self.hours_work) * self.value_hours_extra_noc    # Recargo del 75% para horas nocturnas
+        return extra_hours + extra_hours_nigth
+            
 
-    #metodo que calcula recargos nocturnos
-    def Calulate_night_charges(self):
-        fixed_rate = 10000 
-        return self.night_charges * fixed_rate  # los recargos nocturnos se calculan como una cantidad fija por cada recargo
+    def Calculate_compensation_dismissal(self,days_finish):
+        return (self.salary_base / self.total_days_months) * days_finish     
 
     #metodo que calcula el salario bruro total
     def Calculate_gross_total(self):
         total = self.salary_base + self.calculate_severance_pay() + self.Calculate_severance_interest() + \
-                self.Calculate_bonus_services() + self.Calculate_vacation() + \
-                self.Calulate_extra_hours() + self.Calulate_night_charges() + \
-                self.compensation_dismissal
+                self.Calculate_bonus_services() + self.Calculate_vacation(self.vacations_day) + \
+                self.Calulate_extra_hours(self.hours_extra,self.hours_extra_nigth)  + self.Calculate_compensation_dismissal(self.compensation_days)                
         return total
 
+    #metodo que calcula el impuesto
+    def Calculate_taxes(self, groos_total):
+        return groos_total * self.taxes_rate
+
     #metodo que calcula el total neto 
-    def Calculate_net_total(self, taxes):       
-        return self.Calculate_gross_total() - taxes
+    def Calculate_net_total(self):
+        gross_total= self.Calculate_gross_total()
+        return gross_total - self.Calculate_taxes(gross_total)
     
     #metodo que lanza la excepcion de salario base igual o menor que cero 
     def Check_salariobase (self):
@@ -101,9 +108,5 @@ class Settlementcalculator:
     def Check_months_worked (self):
         if self.months_worked == 0:
             raise Months_workendExcepction()
-
-
-
-
-
-
+        
+    

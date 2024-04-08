@@ -13,7 +13,7 @@ sale de la empresa, por despido, renuncia, finalización de contrado, entre otro
 
 ## ¿Cómo funcionar?
 
-En esta etapa del proyecto el codigo tiene una interfaz por consola, en la que solo se necesita clonar el proyecto para corrrerlo con la linea de codigo liquidacio_definitiva/src/console/interfaz.py. 
+En esta etapa del proyecto el codigo tiene una interfaz por consola, en la que solo se necesita clonar el proyecto para corrrerlo con la linea de codigo src/console/interfaz.py. 
 
 librerias a tener en cuenta: unittest, sys.
 La libreria unittest nos permite correr las prubas unitarias; y la libreria sys nos permite importar clases de otras carpetas
@@ -35,9 +35,6 @@ Dentro de las carpeta tests encontramos los archivos __init__ y liquidacionTest.
 ## Entradas
 self.salary_base = salario base
 self.months_worked = meses trabajados
-self.annual_layoffs = despidos anuales
-self.interest_losses = perdida de intereses
-self.bonus_services = prima de servicios
 self.vacation_days = dias de vacaciones
 self.extra_hours = horas extras
 self.night_charges = cargos nocturnos
