@@ -15,7 +15,7 @@ class MisspelledException(Exception):
 
 #clase para implementar la logica del programa
 class Settlementcalculator:
-    def __init__(self, salary_base, months_worked,changeable_variables):
+    def __init__(self, salary_base, months_worked, changeable_variables):
         """
         self.salary_base = salario base
         self.months_worked = meses trabajados                                

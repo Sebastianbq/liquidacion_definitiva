@@ -13,9 +13,13 @@ sale de la empresa, por despido, renuncia, finalización de contrado, entre otro
 
 ## ¿Cómo funcionar?
 
-En esta etapa del proyecto el codigo tiene una interfaz por consola, en la que solo se necesita clonar el proyecto para corrrerlo con la linea de codigo src/console/interfaz.py. 
+En esta etapa del proyecto el codigo tiene una interfaz en la que solo se necesita clonar el proyecto para corrrerlo y se utiliza con el comando src\console\console_kivy.py.
 
-librerias a tener en cuenta: unittest, sys.
+Y una interfaz por consola, para corrrerlo se utiliza con el comando src/console/interfaz.py. 
+
+librerias a tener en cuenta: kivy, unittest, sys.
+La libreria kivy nos proporciona los medios para crear una interfaz amigable con el usuario.
+
 La libreria unittest nos permite correr las prubas unitarias; y la libreria sys nos permite importar clases de otras carpetas
 
 El codigo lanza una serie de preguntas necesarias para ejecutar las operaciones por consola; el cuales tiene, salario base, dias de vacaciones,
@@ -28,7 +32,7 @@ utilizamos las librerias de unittest, sys.
 
 -Dentro de las carpeta .vscode encontramos el archivo tipo json, el cual contiene un arcvicho json 
 
--Dentro de las carpeta src encontramos un archivo __init__ y 2 carpetas las cuales son: console el cual contiene los archivos interfaz y __init__, tambien otra carpeta llamada settlement el cual contiene los archivos calculateLogic y __init__. 
+-Dentro de las carpeta src encontramos un archivo __init__ y 2 carpetas las cuales son: console el cual contiene los archivos interfaz.py, console_kivy.py y __init__, tambien otra carpeta llamada settlement el cual contiene los archivos calculateLogic y __init__. 
 
 Dentro de las carpeta tests encontramos los archivos __init__ y liquidacionTest.
 

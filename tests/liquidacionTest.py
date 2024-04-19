@@ -24,18 +24,20 @@ class CalculTest(unittest.TestCase):
     def test_1(self):
         base_salary = 5000000
         months_worked = 6
+        variables= {}
         annual_layoffs= 8.33
         interest_layoffs= 12 
         bonus_services= 8.33 
-        vacation_days= 10 
-        extra_hours= 5 
-        night_charges= 2 
-        compensation_dismissal= 0
-        expected_liquidation= 5816883.8297999995
+        variables["vacation"]= 10 
+        variables["extra_hours"]= 5 
+        variables["extra_hours_nigth"]= 2 
+        variables["days_finish"]= 0
+        expected_liquidation= 5506944
+        
 
-        result = Settlementcalculator(base_salary, months_worked)
+        result = Settlementcalculator(base_salary, months_worked,variables)
     
-        valor_neto = result.Calculate_net_total()
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
@@ -47,17 +49,16 @@ class CalculTest(unittest.TestCase):
         annual_layoffs= 8.33
         interest_layoffs= 12 
         bonus_services= 8.33 
-        vacation_days= 15 
-        extra_hours= 8 
-        night_charges= 3 
-        compensation_dismissal= 7500000
-        expected_liquidation= 15780017.6596
+        variables= {}
+        variables["vacation"]= 15
+        variables["extra_hours"]= 8 
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 36
+        expected_liquidation= 77790333
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_layoffs, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(1000000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
         
@@ -69,17 +70,16 @@ class CalculTest(unittest.TestCase):
         annual_layoffs= 8.33
         interest_layoffs= 12 
         bonus_services= 8.33 
-        vacation_days= 12 
-        extra_hours= 10 
-        night_charges= 4
-        compensation_dismissal= 0
-        expected_liquidation= 7049386.773066668
+        variables= {}
+        variables["vacation"]= 12
+        variables["extra_hours"]= 10
+        variables["extra_hours_nigth"]= 4 
+        variables["days_finish"]= 0
+        expected_liquidation= 6529722
+        
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_layoffs, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
-
-        valor_neto = result.Calculate_net_total(1000000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
     
@@ -89,18 +89,17 @@ class CalculTest(unittest.TestCase):
         months_worked = 10
         annual_layoffs = 8.33
         interest_layoffs = 12 
-        bonus_services = 8.33 
-        vacation_days = 20 
-        extra_hours = 15 
-        night_charges = 5 
-        compensation_dismissal = 0
-        expected_liquidation = 9106264.716333333
+        bonus_services = 8.33         
+        variables= {}
+        variables["vacation"]= 20
+        variables["extra_hours"]= 15
+        variables["extra_hours_nigth"]= 5 
+        variables["days_finish"]= 0
+        expected_liquidation = 8563333
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_layoffs, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(1500000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
@@ -111,17 +110,16 @@ class CalculTest(unittest.TestCase):
         annual_layoffs = 8.33
         interest_layoffs = 12 
         bonus_services = 8.33 
-        vacation_days = 30 
-        extra_hours = 12 
-        night_charges = 4 
-        compensation_dismissal = 10000000
-        expected_liquidation = 22535868.652533337
+        variables= {}
+        variables["vacation"]= 30
+        variables["extra_hours"]= 12
+        variables["extra_hours_nigth"]= 4 
+        variables["days_finish"]= 20
+        expected_liquidation = 165990222
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_layoffs, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(2000000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
     
@@ -132,17 +130,16 @@ class CalculTest(unittest.TestCase):
         annual_layoffs = 8.33
         interest_layoffs = 12 
         bonus_services = 8.33 
-        vacation_days = 15 
-        extra_hours = 0 
-        night_charges = 0 
-        compensation_dismissal = 0
-        expected_liquidation = 5750013.244699999
+        variables= {}
+        variables["vacation"]= 15
+        variables["extra_hours"]= 0 
+        variables["extra_hours_nigth"]= 0 
+        variables["days_finish"]= 0
+        expected_liquidation = 5410000
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_layoffs, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(1000000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
@@ -153,17 +150,16 @@ class CalculTest(unittest.TestCase):
         annual_layoffs = 8.33
         interest_layoffs = 12 
         bonus_services = 8.33 
-        vacation_days = 20 
-        extra_hours = 0 
-        night_charges = 0 
-        compensation_dismissal = 10000000
-        expected_liquidation = 16833350.992933333
+        variables= {}
+        variables["vacation"]= 20
+        variables["extra_hours"]= 0
+        variables["extra_hours_nigth"]= 0 
+        variables["days_finish"]= 20
+        expected_liquidation = 63104444
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_layoffs, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(1500000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
@@ -174,17 +170,16 @@ class CalculTest(unittest.TestCase):
         annual_layoffs = 8.33
         interest_layoffs = 12 
         bonus_services = 8.33 
-        vacation_days = 25 
-        extra_hours = 10 
-        night_charges = 3 
-        compensation_dismissal = 9000000
-        expected_liquidation = 17422734.822733335
+        variables= {}
+        variables["vacation"]= 25
+        variables["extra_hours"]= 10
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 45
+        expected_liquidation = 103708306
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                        interest_layoffs, bonus_services, vacation_days,
-                                        extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(2000000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
@@ -197,18 +192,17 @@ class CalculTest(unittest.TestCase):
         annual_layoffs=0
         interest_layoffs=12
         bonus_services=8.33
-        vacation_days=15
-        extra_hours=8
-        night_charges=3
-        compensation_dismissal=0
-        expected_liquidation = 7280016.66
+        variables= {}
+        variables["vacation"]= 15
+        variables["extra_hours"]= 8
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0
+        expected_liquidation = 136542333
 
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                            interest_layoffs, bonus_services, vacation_days,
-                                            extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(2000000)
-        
+        valor_neto = round(result.Calculate_net_total(),0)
+
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
 
     # Caso de prueba 10: salario base 0
@@ -217,15 +211,15 @@ class CalculTest(unittest.TestCase):
         months_worked=24
         annual_layoffs=0
         interest_layoffs=12
-        bonus_services= 0
-        vacation_days=15
-        extra_hours=8
-        night_charges=3
-        compensation_dismissal=0        
+        bonus_services= 0        
+        variables= {}
+        variables["vacation"]= 15
+        variables["extra_hours"]= 10
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0
+        
 
-        self.assertRaises(SalarybaseExcepction, Settlementcalculator, base_salary, months_worked, annual_layoffs,
-                                            interest_layoffs, bonus_services, vacation_days,
-                                            extra_hours, night_charges, compensation_dismissal)
+        self.assertRaises(SalarybaseExcepction, Settlementcalculator,base_salary, months_worked,variables)
         
     # Caso de prueba 11: ningun dia trabajado
     def test_11(self):
@@ -233,15 +227,14 @@ class CalculTest(unittest.TestCase):
         months_worked=0
         annual_layoffs=0
         interest_layoffs=12
-        bonus_services= 0
-        vacation_days=15
-        extra_hours=8
-        night_charges=3
-        compensation_dismissal=0        
-
-        self.assertRaises(Months_workendExcepction, Settlementcalculator, base_salary, months_worked, annual_layoffs,
-                                            interest_layoffs, bonus_services, vacation_days,
-                                            extra_hours, night_charges, compensation_dismissal)
+        bonus_services= 0       
+        variables= {}
+        variables["vacation"]= 10
+        variables["extra_hours"]= 8
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0
+        
+        self.assertRaises(Months_workendExcepction, Settlementcalculator,base_salary, months_worked,variables)
         
     # Caso de prueba 12:
     def test_12(self):
@@ -249,15 +242,15 @@ class CalculTest(unittest.TestCase):
         months_worked=0
         annual_layoffs=0
         interest_layoffs=12
-        bonus_services= 0
-        vacation_days=15
-        extra_hours=8
-        night_charges=3
-        compensation_dismissal=0        
+        bonus_services= 0       
+        variables= {}
+        variables["vacation"]= 15
+        variables["extra_hours"]= 8
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0
+        
 
-        self.assertRaises(Months_workendExcepction, Settlementcalculator, base_salary, months_worked, annual_layoffs,
-                                            interest_layoffs, bonus_services, vacation_days,
-                                            extra_hours, night_charges, compensation_dismissal)
+        self.assertRaises(Months_workendExcepction, Settlementcalculator,base_salary, months_worked,variables)
 
     # Caso de prueba 13: Empleado con salario base y beneficios retenidos durante disputa legal
     def test_13(self):
@@ -266,19 +259,121 @@ class CalculTest(unittest.TestCase):
         annual_layoffs = 8.33
         interest_layoffs = 12 
         bonus_services = 8.33 
-        vacation_days = 15 
-        extra_hours = 8 
-        night_charges = 3 
-        compensation_dismissal = 0
-        expected_liquidation= 7280035.32
+        variables= {}
+        variables["vacation"]= 15
+        variables["extra_hours"]= 8
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0        
+        expected_liquidation= 136542333
         
-        result = Settlementcalculator(base_salary, months_worked, annual_layoffs,
-                                            interest_layoffs, bonus_services, vacation_days,
-                                            extra_hours, night_charges, compensation_dismissal)
+        result = Settlementcalculator(base_salary, months_worked,variables)
 
-        valor_neto = result.Calculate_net_total(2000000)
+        valor_neto = round(result.Calculate_net_total(),0)
         
         self.assertAlmostEqual(expected_liquidation, valor_neto, 2)
+    
+    def test_14(self):
+        base_salary= 1000000
+        months_worked= 12
+        annual_layoffs= 8.33
+        interest_layoffs= 11
+        bonus_services= 8.33
+        variables= {}
+        variables["vacation"]= 12
+        variables["extra_hours"]= 7
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0
+        
+        result=Settlementcalculator(base_salary, months_worked,variables)
+        
+    def test_15(self):
+        base_salary= 2000000
+        months_worked= 22
+        annual_layoffs= 8.33
+        interest_layoffs= 11
+        bonus_services= 8.33
+        variables= {}
+        variables["vacation"]= 15
+        variables["extra_hours"]= 9
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0
+        
+        result=Settlementcalculator(base_salary, months_worked,variables)
+
+
+    def test_16(self):
+        base_salary= 8000000
+        months_worked= 48
+        annual_layoffs= 8.33
+        interest_layoffs= 11
+        bonus_services= 8.33
+        variables= {}
+        variables["vacation"]= 48
+        variables["extra_hours"]= 30
+        variables["extra_hours_nigth"]= 5
+        variables["days_finish"]= 0
+        
+        result=Settlementcalculator(base_salary, months_worked,variables)
+
+    def test_17(self):
+        base_salary= 900000
+        months_worked= 6
+        annual_layoffs= 8.33
+        interest_layoffs= 11
+        bonus_services= 8.33
+        variables= {}
+        variables["vacation"]= 0
+        variables["extra_hours"]= 30
+        variables["extra_hours_nigth"]= 8 
+        variables["days_finish"]= 0
+        
+        result=Settlementcalculator(base_salary, months_worked,variables)
+    
+    
+    def test_18(self):
+        base_salary= 1000000
+        months_worked= 10
+        annual_layoffs= 8.33
+        interest_layoffs= 11
+        bonus_services= 8.33
+        variables= {}
+        variables["vacation"]= 7
+        variables["extra_hours"]= 10
+        variables["extra_hours_nigth"]= 3
+        variables["days_finish"]= 0
+        
+        result=Settlementcalculator(base_salary, months_worked,variables)
+
+
+    def test_19(self):
+        base_salary= 5000000
+        months_worked= 24
+        annual_layoffs= 8.33
+        interest_layoffs= 11
+        bonus_services= 8.33
+        variables= {}
+        variables["vacation"]= 30
+        variables["extra_hours"]= 15
+        variables["extra_hours_nigth"]= 3 
+        variables["days_finish"]= 0
+        
+        result=Settlementcalculator(base_salary, months_worked,variables)
+
+
+    def test_20(self):
+        base_salary= 850000
+        months_worked= 3
+        annual_layoffs= 8.33
+        interest_layoffs= 11
+        bonus_services= 8.33
+        variables= {}
+        variables["vacation"]= 0
+        variables["extra_hours"]= 8
+        variables["extra_hours_nigth"]= 5
+        variables["days_finish"]= 0
+        
+        result=Settlementcalculator(base_salary, months_worked,variables)
+               
 
 #Esto es para realizar las pruebas unitarias
 if __name__ == '__main__':
