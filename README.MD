@@ -17,6 +17,8 @@ En esta etapa del proyecto el codigo tiene una interfaz en la que solo se necesi
 
 Y una interfaz por consola, para corrrerlo se utiliza con el comando src/console/interfaz.py. 
 
+para correr las pruebas unitarias se utiliza el comando tests\liquidacionTest.py
+
 librerias a tener en cuenta: kivy, unittest, sys.
 La libreria kivy nos proporciona los medios para crear una interfaz amigable con el usuario.
 
